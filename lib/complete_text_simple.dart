@@ -10,7 +10,7 @@ import 'get_most_likely_next_word.dart';
 /// If the prompt is null or empty, the function prompts the user to enter a valid prompt and recursively calls
 /// itself to start over.
 
-void completeText(Map<String, Map<String, int>> trainedModel) {
+void completeTextSimple(Map<String, Map<String, int>> trainedModel) {
   print('Enter a text completion prompt');
 
   // Request that the user input a prompt for TACO to complete.
@@ -33,6 +33,6 @@ void completeText(Map<String, Map<String, int>> trainedModel) {
   // Otherwise, ask the user to enter a valid prompt.
   else {
     print('Please enter some text to complete');
-    completeText(trainedModel);
+    completeTextSimple(trainedModel);
   }
 }

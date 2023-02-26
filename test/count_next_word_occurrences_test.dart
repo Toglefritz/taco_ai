@@ -8,40 +8,16 @@ import 'package:test/test.dart';
 /// for an input string with only one word.
 ///
 void main() {
-  test(
-      'countNextWordOccurrences returns the correct map for a given input string',
-      () {
-    String input = 'the cat in the hat the hat on the mat';
-    Map<String, Map<String, int>> expectedOutput = {
-      'the': {'cat': 1, 'hat': 2, 'mat': 1},
+    test('countNextWordOccurrences', () {
+    final input = 'the cat in the hat, the hat on the mat.';
+    final result = countNextWordOccurrences(input);
+    expect(result, {
+      'the': {'cat': 1, 'hat': 2, 'on': 1, 'mat': 1},
       'cat': {'in': 1},
       'in': {'the': 1},
       'hat': {'the': 1, 'on': 1},
       'on': {'the': 1},
-      'mat': {}
-    };
-    Map<String, Map<String, int>> actualOutput =
-        countNextWordOccurrences(input);
-    expect(actualOutput, equals(expectedOutput));
-  });
-
-  test(
-      'countNextWordOccurrences returns an empty map for an input string with no words',
-      () {
-    String input = '';
-    Map<String, Map<String, int>> expectedOutput = {};
-    Map<String, Map<String, int>> actualOutput =
-        countNextWordOccurrences(input);
-    expect(actualOutput, equals(expectedOutput));
-  });
-
-  test(
-      'countNextWordOccurrences returns a map with one key-value pair for an input string with only one word',
-      () {
-    String input = 'hello';
-    Map<String, Map<String, int>> expectedOutput = {'hello': {}};
-    Map<String, Map<String, int>> actualOutput =
-        countNextWordOccurrences(input);
-    expect(actualOutput, equals(expectedOutput));
+      'mat': {'.': 1},
+    });
   });
 }

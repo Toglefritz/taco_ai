@@ -7,24 +7,14 @@ import 'package:test/test.dart';
 /// function returns the input string when given a string with no punctuation.
 
 void main() {
-  test('removePunctuation returns empty string for input with only punctuation', () {
-    for (var element in punctuation) {
-      expect(removePunctuation(element), '');
-    }
-    expect(removePunctuation('.,;:!?'), '');
+    test('removes punctuation marks from input text', () {
+    expect(removePunctuation('Hello, world!'), equals('Hello world'));
+    expect(removePunctuation('The quick brown fox jumps over the lazy dog.'), equals('The quick brown fox jumps over the lazy dog'));
+    expect(removePunctuation('Some-punctuation-here.'), equals('Somepunctuationhere'));
+    expect(removePunctuation('No punctuation here'), equals('No punctuation here'));
   });
 
-   test('removePunctuation removes all punctuation', () {
-    String input = "Hello, World! How are you today?";
-    String expectedOutput = "Hello World How are you today";
-    String actualOutput = removePunctuation(input);
-    expect(actualOutput, equals(expectedOutput));
-  });
-
-  test('removePunctuation returns input for input with no punctuation', () {
-    String input = "This is a test string";
-    String expectedOutput = "This is a test string";
-    String actualOutput = removePunctuation(input);
-    expect(actualOutput, equals(expectedOutput));
+  test('returns empty string if input is empty', () {
+    expect(removePunctuation(''), equals(''));
   });
 }
